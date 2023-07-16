@@ -14,6 +14,7 @@
 
           var certificateNumber =
             document.getElementById("certificateNumber").value;
+            certificateNumber=certificateNumber.replaceAll('/', '-')
           var apiUrl =
             "https://satyalok-certificate.veerrajpoot.repl.co/certificate/" +
             certificateNumber;
@@ -114,4 +115,4 @@
         </div>
     </div>
 </body>
-              </html>
+</html>
