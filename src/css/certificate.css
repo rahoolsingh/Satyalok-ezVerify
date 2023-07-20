@@ -50,7 +50,7 @@ body{
     margin: auto;
 }
 .cert-details{
-    text-align: justify;
+    text-align: left;
     font-weight: bold;
 }
 .card-details h3 span{
