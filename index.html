@@ -61,7 +61,7 @@
                 <p>Enter the certificate details below to verify:</p>
                 <label>Certificate ID:</label>
                 <input type="text" id="certificateNumber" required>
-                <button type="submit">Verify</button>
+                <button type="submit" id="submit">Verify</button>
             </span>
         </form>
 
@@ -117,5 +117,14 @@
            <h5 style="font-weight: 400; line-height: 0%;">Powered by SecureWonders.com</h5>
         </div>
     </div>
+
+    <script>
+        const queryString = window.location.search;
+        if(queryString) {
+            const query = queryString.replace("?=", "")
+            document.getElementById('certificateNumber').value = query;
+            document.getElementById('submit').click();
+        }
+    </script>
 </body>
 </html>
