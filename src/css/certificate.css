@@ -96,6 +96,20 @@ a{
     content: '|';
 }
 
+.alert {
+    position: fixed; 
+    bottom: 50px; 
+    text-align: center; 
+    width: 100vw; 
+}
+.alert p{
+    background: #b0b0b0c1;
+    width: fit-content;
+    margin: auto;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+}
 @media (max-width: 768px){
     body{
         /* max-width: 90vw; */
@@ -110,3 +124,4 @@ a{
         box-shadow: none;
     }
 }
+

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/css/certificate.css">
     <title>Verify Certificate | Satyalok</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function certificateForm() {
             var certificateNumber =
@@ -112,6 +113,9 @@
                             </tr>
                         </table>
                     </div>
+                    <div>
+                        <h4 style="margin-top: 20px; cursor: pointer; color: #ad0000;" onclick="copyUrl()">Copy Certificate Link</h4>
+                    </div>
                 </div>
                 <div id="notfound" class="record" hidden>
                     <img class="approved" src="src/img/warning.png" alt="">
@@ -127,6 +131,10 @@
            <h5 style="font-weight: 400; line-height: 0%;">Powered by SecureWonders.com</h5>
         </div>
     </div>
+    <div class="alert">
+        <p id="copied" hidden>Link Copied To Clipboard</p>
+    </div>
+    
 
     <script>
         const queryString = window.location.search;
@@ -135,6 +143,14 @@
             document.getElementById('certificateNumber').value = query;
             getCertificate(query)
         }
+
+        function copyUrl() {
+            const currentUrl = window.location;
+            navigator.clipboard.writeText(currentUrl)
+            document.getElementById('copied').hidden = false
+            setTimeout(() => document.getElementById('copied').hidden = true, 1500)
+            
+}
     </script>
 </body>
 </html>
