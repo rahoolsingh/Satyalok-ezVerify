@@ -6,15 +6,22 @@
     <link rel="stylesheet" href="src/css/certificate.css">
     <title>Verify Certificate | Satyalok</title>
     <script>
-        function getCertificate() {
+        function certificateForm() {
+            var certificateNumber =
+            document.getElementById("certificateNumber").value;
+            certificateNumber=certificateNumber.replaceAll('/', '-')
+
+            const url = '?=' + certificateNumber;
+
+            document.location.replace(url)
+        }
+        
+        function getCertificate(certificateNumber) {
         document.getElementById('card').hidden = false
         document.getElementById('wait').hidden = false
         document.getElementById('record').hidden = true
         document.getElementById('notfound').hidden = true
 
-          var certificateNumber =
-            document.getElementById("certificateNumber").value;
-            certificateNumber=certificateNumber.replaceAll('/', '-')
           var apiUrl =
             "https://satyalok-certificate.veerrajpoot.repl.co/certificate/" +
             certificateNumber;
@@ -26,6 +33,8 @@
                     document.getElementById('wait').hidden = true
                     document.getElementById('record').hidden = true
                     document.getElementById('notfound').hidden = false
+
+                    document.title ="Certificate Not Found"
                 }
                 else{
                     document.getElementById("studentName").innerText =
@@ -38,6 +47,7 @@
                         data.certificate_id;
                     document.getElementById("details").innerText =
                         data.program_details;
+                    document.title = data.student_name + " | Satyalok | ezVerify"
                     
                     document.getElementById('wait').hidden = true
                     document.getElementById('record').hidden = false
@@ -53,7 +63,7 @@
 </head>
 <body>
     <div class="card-form">
-        <form class="verify_form" onsubmit="event.preventDefault(); getCertificate();" style="text-align: center;">
+        <form class="verify_form" onsubmit="event.preventDefault(); certificateForm();" style="text-align: center;">
             <span style="text-align: center; margin: auto;">
                 <a href="https://certificate.satyalok.in">
                     <img class="certtificate-logo" src="src/img/logo.png">
@@ -123,7 +133,7 @@
         if(queryString) {
             const query = queryString.replace("?=", "")
             document.getElementById('certificateNumber').value = query;
-            document.getElementById('submit').click();
+            getCertificate(query)
         }
     </script>
 </body>
