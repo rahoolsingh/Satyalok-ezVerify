@@ -34,7 +34,14 @@
         });
 
         Instascan.Camera.getCameras().then(function (cameras) {
-            document.getElementById("result").textContent=cameras
+            let txt = "";
+            for (let x in cameras) {
+            txt += cameras[x].name + " ";
+            };
+
+            
+            document.getElementById("result").textContent=txt
+
             console.log(cameras)
             if (cameras.length > 0) {
                 // Choose the last camera in the list (back camera)
