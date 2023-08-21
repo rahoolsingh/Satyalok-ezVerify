@@ -1,66 +1,128 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    overflow: hidden;
+    background: black;
+    font-family: Arial, sans-serif;
+}
+
+#scanner-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#scanner-frame {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.21);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color: #f2f2f2;
+    color: white;
+    z-index: 3;
 }
 
-h1 {
-    margin-bottom: 20px;
-    color: #333;
+body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 #scanner-container {
-    width: 100%;
-    max-width: 300px;
-    border: 2px solid #333;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
-    margin-bottom: 20px;
 }
 
 #scanner-frame {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
 }
 
-#result {
-    font-weight: bold;
-    color: #333;
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
 
-#openLinkButton {
-    display: none;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.camera-focus-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    max-width: 80vw;
+    height: 60vw;
+    max-height: 80vh;
+    border: 2px dashed #00ff00;
+    animation: blink 2s linear infinite alternate;
 }
 
-#openLinkButton:hover {
-    background-color: #0056b3;
+.result-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
-.alert {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    margin-top: 10px;
-    display: none;
-}
-
-@media (max-width: 768px)
-{
-    #scanner-video {
-        width: 100%;
-        height: auto;
-        transform: scaleX(-1); /* Invert the video horizontally */
+@keyframes blink {
+    0%, 100% {
+        opacity: 0;
     }
-    
+    50% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes scanning {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.result-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #ffff;
+}
+.result-container button {
+    margin: auto;
 }
