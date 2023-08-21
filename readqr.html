@@ -11,43 +11,36 @@
         <video id="scanner-video"></video>
     </div>
     <p>Scanned QR Code Data: <span id="result"></span></p>
-    <p>Verification Result: <span id="verification-result"></span></p>
+    <button id="openLinkButton" style="display: none;">Open Certificate Link</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script>
         const scanner = new Instascan.Scanner({ video: document.getElementById('scanner-video') });
 
         scanner.addListener('scan', function(content) {
-            document.getElementById('result').textContent = content;
-            verifyCertificate(content);
+            const url = new URL(content);
+            const certificateId = url.searchParams.get("");
+            if (url.origin === "https://certificate.satyalok.in" && certificateId) {
+                document.getElementById('result').textContent = "Valid Certificate ID: " + certificateId;
+                document.getElementById('scanner-container').style.display = 'none';
+                document.getElementById('openLinkButton').style.display = 'block';
+                document.getElementById('openLinkButton').addEventListener('click', function() {
+                    window.location.href = content;
+                });
+            } else {
+                document.getElementById('result').textContent = "Invalid QR Code";
+            }
         });
 
-        // Try to access the back camera
         Instascan.Camera.getCameras().then(function (cameras) {
-            const backCamera = cameras.find(camera => camera.name.toLowerCase().includes('back'));
-            
-            if (backCamera) {
-                scanner.start(backCamera);
-            } else if (cameras.length > 0) {
-                scanner.start(cameras[0]);
+            if (cameras.length > 0) {
+                scanner.start(cameras[cameras.length - 1]);
             } else {
                 console.error('No cameras found.');
             }
         }).catch(function (e) {
             console.error(e);
         });
-
-        function verifyCertificate(url) {
-            const pattern = /^https:\/\/certificate\.satyalok\.in\/\?=(\w+)$/; // Pattern to match the URL format
-            const matches = url.match(pattern);
-
-            if (matches) {
-                const certificateId = matches[1]; // Extract the certificate ID from the URL
-                document.getElementById('verification-result').textContent = `Valid Certificate ID: ${certificateId}`;
-            } else {
-                document.getElementById('verification-result').textContent = 'Invalid URL or Certificate ID';
-            }
-        }
     </script>
 </body>
 </html>
