@@ -6,7 +6,7 @@
     <title>QR Code Scanner</title>
 </head>
 <body>
-    <h1>QR Code Scanner</h1>
+    <h1>Scan QR to Verify</h1>
     <div id="scanner-container">
         <video id="scanner-video"></video>
     </div>
@@ -34,6 +34,7 @@
 
         Instascan.Camera.getCameras().then(function (cameras) {
             if (cameras.length > 0) {
+                // Choose the last camera in the list (back camera)
                 scanner.start(cameras[cameras.length - 1]);
             } else {
                 console.error('No cameras found.');
