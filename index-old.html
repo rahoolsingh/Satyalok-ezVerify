@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/main-old.css">
+    <title>Verify Certificate | Satyalok</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function certificateForm() {
+            var certificateNumber =
+            document.getElementById("certificateNumber").value;
+            certificateNumber=certificateNumber.replaceAll('/', '-')
+
+            const url = '?=' + certificateNumber;
+
+            document.location.replace(url)
+        }
+        
+        function getCertificate(certificateNumber) {
+        document.getElementById('card').hidden = false
+        document.getElementById('wait').hidden = false
+        document.getElementById('record').hidden = true
+        document.getElementById('notfound').hidden = true
+
+          var apiUrl =
+            "https://satyalok-certificate.veerrajpoot.repl.co/certificate/" +
+            certificateNumber;
+  
+          fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+                if(data.student_name==='NaN'){
+                    document.getElementById('wait').hidden = true
+                    document.getElementById('record').hidden = true
+                    document.getElementById('notfound').hidden = false
+
+                    document.title ="Certificate Not Found"
+                }
+                else{
+                    document.getElementById("studentName").innerText =
+                        data.student_name;
+                    document.getElementById("dateOfIssue").innerText =
+                        data.date_of_issue;
+                    document.getElementById("category").innerText =
+                        data.category;
+                    document.getElementById("cert_id").innerText =
+                        data.certificate_id;
+                    document.getElementById("details").innerText =
+                        data.program_details;
+                    document.title = data.student_name + " | Satyalok | ezVerify"
+                    
+                    document.getElementById('wait').hidden = true
+                    document.getElementById('record').hidden = false
+                    document.getElementById('notfound').hidden = true
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                document.getElementById("wait").innerText = "Server Error"
+            })
+        }
+      </script>
+</head>
+<body>
+    <div class="card-form">
+        <form class="verify_form" onsubmit="event.preventDefault(); certificateForm();" style="text-align: center;">
+            <span style="text-align: center; margin: auto;">
+                <a href="https://certificate.satyalok.in">
+                    <img class="certtificate-logo" src="src/img/logo.png">
+                </a>
+                <p>Enter the certificate details below to verify:</p>
+                <label>Certificate ID:</label>
+                <input type="text" id="certificateNumber" required>
+                <button type="submit" id="submit">Verify</button>
+            </span>
+        </form>
+
+        <div class="card" id="card" hidden>
+            <div class="card-details">
+
+                <div id="wait" hidden>
+                    <img class="search-animation" src="src/img/search.gif">
+                    <p>Please Wait...</p>
+                </div>
+
+                <div class="record" id="record" hidden>
+                    <img class="approved" src="src/img/verify.png" alt="">
+                    <h2>This is a valid certificate awarded to <span class="data" id="studentName">NaN</span></h2>
+                    <div class="cert-details">
+                        <h3>Certificate Details:</h3>
+                        <hr>
+                        <table>
+                            <tr>
+                                <td>Certificate ID</td>
+                                <td> : </td>
+                                <td><span class="data" id="cert_id">NaN</span></td>
+                            </tr>
+                            <tr>
+                                <td>Category/Progarm</td>
+                                <td> : </td>
+                                <td><span class="data" id="category">NaN</span></td>
+                            </tr>
+                            <tr>
+                                <td>Date of Issue</td>
+                                <td> : </td>
+                                <td><span class="data" id="dateOfIssue">NaN</span></td>
+                            </tr>
+                            <tr>
+                                <td>Program Details</td>
+                                <td> : </td>
+                                <td><span class="data" id="details">NaN</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <h4 style="margin-top: 20px; cursor: pointer; color: #ad0000;" onclick="copyUrl()">Copy Certificate Link</h4>
+                    </div>
+                </div>
+                <div id="notfound" class="record" hidden>
+                    <img class="approved" src="src/img/warning.png" alt="">
+                    <h2>Something Went Wrong</h2>
+                    <h3>Details not found. Please verify the entered information.</h3>
+                    <h4>If this issue continues, mail us on <a href="mailto:contact@satyalok.in">contact@satyalok.in</a></h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="credit">
+           <a href="https://satyalok.in"><img class="home" src="src/img/home.png"> Back To Home</a> <span></span> <a href="https://wa.me/+917673841437?text=eZVerify%0AHi%20There%2C%20I%20am%20facing%20an%20issue%20with%20"><img class="home" src="src/img/help.png"> Help Centre</a>
+           <h5 style="font-weight: 400; line-height: 0%;">Powered by SecureWonders.com</h5>
+        </div>
+    </div>
+    <div class="alert">
+        <p id="copied" hidden>Link Copied To Clipboard</p>
+    </div>
+    
+
+    <script>
+        const queryString = window.location.search;
+        if(queryString) {
+            const query = queryString.replace("?=", "")
+            document.getElementById('certificateNumber').value = query;
+            getCertificate(query)
+        }
+
+        function copyUrl() {
+            const currentUrl = window.location;
+            navigator.clipboard.writeText(currentUrl)
+            document.getElementById('copied').hidden = false
+            setTimeout(() => document.getElementById('copied').hidden = true, 1500)
+            
+}
+    </script>
+</body>
+</html>

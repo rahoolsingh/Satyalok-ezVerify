@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .logo .img-fluid {
+    max-width: 350px;
+    cursor: pointer;
+  }
+  
+  header .head {
+    font-weight: bold;
+  }
+  
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #004aad;
+  }
+  
+  .approved,
+  .search-animation {
+    width: 100px;
+  }
+  
+  .search-animation {
+    margin: auto;
+  }
+  
+  .card {
+    padding: 30px;
+  }
+  
+  .card .tb {
+    font-weight: bold;
+  }
+  
+  #certificateNumber {
+    max-width: 300px;
+  }
+  
+  #verifyButton {
+    width: fit-content;
+    padding: auto;
+  }
+  
+  /* Mobile View */
+  @media (max-width: 768px) {
+    header {
+      text-align: center;
+      margin: auto;
+    }
+  
+    .certificate-form {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  
+    .mb-3 {
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+  
+    .form-label,
+    .form-control {
+      margin-bottom: 10px;
+      font-size: 14px;
+      text-align: center;
+    }
+  
+    .card {
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+  
+    .pc-certidlabel {
+      display: none;
+    }
+  
+    .mobile-certidlabel::after {
+      content: "ENTER CERTIFICATE ID";
+    }
+  
+    .record {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .record table{
+      text-align: left;
+    }
+  
+    .cert-details table {
+      width: 100%;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  
+    .btnContainer {
+      text-align: center;
+      margin-top: 20px;
+    }
+  
+    .btn-success,
+    .btn-primary {
+      font-size: 14px;
+      margin-right: 10px;
+    }
+  
+    .alert {
+      text-align: center;
+      margin-top: 20px;
+    }
+  
+    .powered-by {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  
+    .social-links {
+      display: none;
+    }
+  
+    #wait {
+      text-align: center;
+      margin-top: 20px;
+    }
+  
+    .search-animation {
+      display: block;
+      margin: 0 auto;
+    }
+    .footer-links{
+      text-align: center;
+    }
+  }
+  
