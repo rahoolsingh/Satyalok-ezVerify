@@ -34,6 +34,7 @@
             if (url.origin === "https://certificate.satyalok.in" && certificateId) {
                 document.getElementById('result').textContent = "Valid Certificate ID: " + certificateId;
                 document.getElementById('scanner-container').style.display = 'none';
+                document.getElementById('result-container').style.bottom = '50%';                
                 document.getElementById('openLinkButton').style.display = 'block';
                 document.getElementById('openLinkButton').addEventListener('click', function() {
                     window.location.href = content;
