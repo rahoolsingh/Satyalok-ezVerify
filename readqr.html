@@ -8,10 +8,12 @@
 </head>
 <body>
     <div id="scanner-container">
-        <video id="scanner-frame" src="src/video.mp4" controls>Hello</video>
+        <video id="scanner-frame"></video>
         <div id="overlay">
             <div class="camera-focus-frame">
-                <span></span>
+                <div id="error">
+                    Unable to access the Camera
+                </div>
             </div>
         </div>
     </div>
@@ -42,20 +44,13 @@
         });
 
         Instascan.Camera.getCameras().then(function (cameras) {
-            let txt = "";
-            for (let x in cameras) {
-            txt += cameras[x].name + "\n";
-            };
-
-            
-            document.getElementById("result").textContent=txt
-
-            console.log(cameras)
             if (cameras.length > 0) {
                 // Choose the last camera in the list (back camera)
                 scanner.start(cameras[cameras.length - 1]);
+                document.getElementById('error').style.display = "none";
             } else {
                 console.error('No cameras found.');
+                document.getElementById('error').style.display = "block";
             }
         }).catch(function (e) {
             console.error(e);
