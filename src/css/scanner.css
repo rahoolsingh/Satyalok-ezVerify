@@ -89,10 +89,15 @@ body {
 
 .result-container {
     position: absolute;
-    top: 50%;
+    bottom: 5%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    color: #ffff;
+}
+
+.result-container button {
+    margin: auto;
 }
 
 @keyframes blink {
@@ -103,26 +108,9 @@ body {
         opacity: 1;
     }
 }
-
-
-@keyframes scanning {
-    0% {
-        transform: translateY(0);
+@media (max-width: 768px) {
+    .camera-focus-frame {
+        top: 40%;
     }
-
-    100% {
-        transform: translateY(100%);
-    }
-}
-
-.result-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #ffff;
-}
-.result-container button {
-    margin: auto;
+    
 }
