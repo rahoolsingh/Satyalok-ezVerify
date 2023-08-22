@@ -49,9 +49,12 @@
                 // Choose the last camera in the list (back camera)
                 scanner.start(cameras[cameras.length - 1]);
                 document.getElementById('error').style.display = "none";
+                document.getElementById('result-container').style.bottom = '5%';                
             } else {
-                console.error('No cameras found.');
-                document.getElementById('error').style.display = "block";
+                setTimeout(() => {
+                    console.error('No cameras found.');
+                    document.getElementById('error').style.display = "block";
+                }, 1500);
             }
         }).catch(function (e) {
             console.error(e);
