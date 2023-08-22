@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/css/scanner.css">
-    <title>QR Code Scanner</title>
+    <title>Scan QR Code | ezVerify</title>
 </head>
 <body>
     <div id="scanner-container">
@@ -20,7 +20,8 @@
     
     <div class="result-container">
         <h4 id="result"></h4>
-        <button id="openLinkButton" style="display: none;">Open Certificate Link</button>
+        <button id="openLinkButton" style="display: none;">Verify</button>
+        <button id="reloadButton" onClick="window.location.reload();" style="display: none;">Scan Again</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
@@ -32,14 +33,18 @@
             const url = new URL(content);
             const certificateId = url.searchParams.get("");
             if (url.origin === "https://certificate.satyalok.in" && certificateId) {
-                document.getElementById('result').textContent = "Valid Certificate ID: " + certificateId;
+                document.getElementById('result').textContent = "Captured ID: " + certificateId;
                 document.getElementById('scanner-container').style.display = 'none';
                 document.getElementById('openLinkButton').style.display = 'block';
+                document.getElementById('reloadButton').style.display = 'block';
+                document.getElementById('result').style.background = '#0000';
                 document.getElementById('openLinkButton').addEventListener('click', function() {
                     window.location.href = content;
                 });
+                window.location.href=content;
             } else {
                 document.getElementById('result').textContent = "Invalid QR Code";
+                document.getElementById('result').style.background = '#ff0000';
             }
         });
 

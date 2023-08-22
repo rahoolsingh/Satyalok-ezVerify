@@ -95,7 +95,9 @@ body {
     text-align: center;
     color: #ffff;
 }
-
+#result{
+    padding: 5px 20px;
+}
 .result-container button {
     margin: auto;
 }
