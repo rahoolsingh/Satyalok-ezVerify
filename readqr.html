@@ -12,14 +12,14 @@
         <div id="overlay">
             <div class="camera-focus-frame">
                 <div id="error">
-                    Unable to access the Camera
+                    No cameras found
                 </div>
             </div>
         </div>
     </div>
     
     <div class="result-container">
-        <h4 id="result">Scan QR</h4>
+        <h4 id="result"></h4>
         <button id="openLinkButton" style="display: none;">Open Certificate Link</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -34,7 +34,6 @@
             if (url.origin === "https://certificate.satyalok.in" && certificateId) {
                 document.getElementById('result').textContent = "Valid Certificate ID: " + certificateId;
                 document.getElementById('scanner-container').style.display = 'none';
-                document.getElementById('result-container').style.bottom = '50%';                
                 document.getElementById('openLinkButton').style.display = 'block';
                 document.getElementById('openLinkButton').addEventListener('click', function() {
                     window.location.href = content;
@@ -49,12 +48,11 @@
                 // Choose the last camera in the list (back camera)
                 scanner.start(cameras[cameras.length - 1]);
                 document.getElementById('error').style.display = "none";
-                document.getElementById('result-container').style.bottom = '5%';                
             } else {
                 setTimeout(() => {
-                    console.error('No cameras found.');
                     document.getElementById('error').style.display = "block";
-                }, 1500);
+                    console.error('No cameras found.');
+                }, 5000);
             }
         }).catch(function (e) {
             console.error(e);
