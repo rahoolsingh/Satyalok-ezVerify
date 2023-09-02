@@ -4,7 +4,11 @@ body {
     background: black;
     font-family: Arial, sans-serif;
 }
-
+.backBtn{
+    position: fixed;
+    z-index: 5;
+    margin: 20px;
+}
 #scanner-container {
     position: relative;
     width: 100vw;
@@ -110,6 +114,16 @@ body {
     text-align: center;
     color: #ffff;
 }
+.footer-brand{
+    width: 100vw;
+    bottom: 30px;
+    position: fixed;
+    text-align: center;
+}
+.footer-brand img{
+    max-width: 30vw;
+}
+
 @keyframes blink {
     0%, 100% {
         opacity: 0;

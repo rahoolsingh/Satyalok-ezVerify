@@ -48,6 +48,12 @@ a {
   margin-top: 20px;
 }
 
+.made {
+  text-align: center;
+  font-size: small;
+  font-weight: 600;
+  margin-top: 10px;
+}
 /* Mobile View */
 @media (max-width: 768px) {
   header {
@@ -151,7 +157,7 @@ a {
   justify-content: flex-start;
   height: var(--uib-size);
   width: var(--uib-size);
-  
+
   margin: auto;
   margin-bottom: 10px;
 }
@@ -246,4 +252,3 @@ a {
     opacity: 1;
   }
 }
-

@@ -3,18 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scan QR codes to verify certificates using Satyalok's QR Code Scanner.">
+    <meta name="keywords" content="QR Code Scanner, Certificate Verification, Satyalok, Certificate ID">
+    <meta name="author" content="Secure Wonders">
+    
+    <!-- Open Graph Protocol (OGP) Tags -->
+    <meta property="og:title" content="QR Code Scanner - Satyalok">
+    <meta property="og:description" content="Scan QR codes to verify certificates using Satyalok's QR Code Scanner.">
+    <meta property="og:url" content="https://certificate.satyalok.in/readqr">
+    <meta property="og:image" content="https://certificate.satyalok.in/src/img/qr-og-image.png">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QR Code Scanner - Satyalok">
+    <meta name="twitter:description" content="Scan QR codes to verify certificates using Satyalok's QR Code Scanner.">
+    <meta name="twitter:image" content="https://certificate.satyalok.in/src/img/qr-og-image.png">
+
+    <!-- ... Rest of your code ... -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
     <link rel="stylesheet" href="src/css/scanner.css">
     <title>Scan QR Code | ezVerify</title>
 </head>
 <body>
     <div id="scanner-container">
         <video id="scanner-frame"></video>
+        
+        <button id="goBackBtn" class="btn btn-danger backBtn" onclick="window.location.href='https://certificate.satyalok.in'">
+            <span class="far fa-circle-left"></span> Back
+        </button>
+
         <div id="overlay">
             <div class="camera-focus-frame">
                 <div id="error">
                     No cameras found
                 </div>
             </div>
+        </div>
+        <div class="footer-brand">
+            <img src="src/img/ezverify.png" alt="eZ Verify">
         </div>
     </div>
     
