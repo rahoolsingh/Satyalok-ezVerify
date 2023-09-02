@@ -121,6 +121,7 @@ body {
     text-align: center;
 }
 .footer-brand img{
+    width: 100px;
     max-width: 30vw;
 }
 
