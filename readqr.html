@@ -67,9 +67,20 @@
 
         scanner.addListener('scan', function(content) {
             const url = new URL(content);
-            const certificateId = url.searchParams.get("");
+            const certificateId = url.searchParams.get("") || 0;
+            const receiptId = url.searchParams.get('80g');
             if (url.origin === "https://certificate.satyalok.in" && certificateId) {
                 document.getElementById('result').textContent = "Captured ID: " + certificateId;
+                document.getElementById('scanner-container').style.display = 'none';
+                document.getElementById('openLinkButton').style.display = 'block';
+                document.getElementById('reloadButton').style.display = 'block';
+                document.getElementById('result').style.background = '#0000';
+                document.getElementById('openLinkButton').addEventListener('click', function() {
+                    window.location.href = content;
+                });
+                window.location.href=content;
+            } else if (url.origin === "https://certificate.satyalok.in/check_receipt" && receiptId) {
+                document.getElementById('result').textContent = "Captured ID: " + receiptId;
                 document.getElementById('scanner-container').style.display = 'none';
                 document.getElementById('openLinkButton').style.display = 'block';
                 document.getElementById('reloadButton').style.display = 'block';
