@@ -303,7 +303,7 @@
       // To handle the certificate verification form submission
       const queryString = window.location.search;
       if (queryString) {
-        const query = queryString.replace("?=", "");
+        const query = queryString.replace("?80g=", "");
         document.getElementById("certificateNumber").value = query;
         getCertificate(query);
       }
