@@ -82,6 +82,23 @@
                 document.getElementById('result').textContent = "Invalid QR Code";
                 document.getElementById('result').style.background = '#ff0000';
             }
+            
+            if (url.origin === "https://certificate.satyalok.in/check_receipt" && certificateId) {
+                document.getElementById('result').textContent = "Invalid QR Code";
+                document.getElementById('result').style.background = '#ff0000';
+                // document.getElementById('result').textContent = "Captured ID: " + certificateId;
+                // document.getElementById('scanner-container').style.display = 'none';
+                // document.getElementById('openLinkButton').style.display = 'block';
+                // document.getElementById('reloadButton').style.display = 'block';
+                // document.getElementById('result').style.background = '#0000';
+                // document.getElementById('openLinkButton').addEventListener('click', function() {
+                //     window.location.href = content;
+                // });
+                window.location.href=content;
+            } else {
+                document.getElementById('result').textContent = "Invalid QR Code";
+                document.getElementById('result').style.background = '#ff0000';
+            }
         });
 
         Instascan.Camera.getCameras().then(function (cameras) {
