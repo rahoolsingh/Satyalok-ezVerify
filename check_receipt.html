@@ -81,20 +81,21 @@
         fetch(apiUrl)
           .then((response) => response.json())
           .then((data) => {
+            data.donor = data.donor.replace(',', '')
             console.log(data)
-            if (data.student_name === "NaN") {
-              document.getElementById("wait", "record").hidden = true;
+            if (data.donor === "NaN") {
+              document.getElementById("wait", "record").hidden = false;
               document.getElementById("notfound").hidden = false;
               document.title = "Certificate Not Found";
             } else {
-              update("studentName", data.student_name);
-              update("fullName", data.student_name);
-              update("dateOfIssue", data.date_of_issue);
-              update("category", data.category);
-              update("cert_id", data.certificate_id);
-              update("details", data.program_details);
-
-              document.title = data.student_name + " ✅ | Satyalok ezVerify";
+              update("donorTop", data.donor);
+              update("donor", data.donor);
+              update("receipt_id", data.receipt_id);
+              update("cert_date", data.cert_date);
+              update("txn_amt", data.txn_amt);
+              update("txn_date", data.txn_date);
+              
+              document.title = data.donor + " ✅ | Satyalok ezVerify";
 
               document.getElementById("wait", "notfound").hidden = true;
               document.getElementById("record").hidden = false;
@@ -151,7 +152,7 @@
     <main class="py-5">
       <div class="container">
         <header class="mb-3">
-          <h1 class="head">Satyalok ezVerify<span class="h6"> 2.0</span></h1>
+          <h1 class="head">Satyalok ezVerify<span class="h6"> 2.0</span> (80G)</h1>
           <h6 class="mb-3 desc">
             A WebApp by <a href="https://satyalok.in">Satyalok - A New Hope</a>
           </h6>
@@ -164,7 +165,7 @@
         >
           <label for="certificateNumber" class="font-weight-bold">
             <span class="mobile-certidlabel"></span>
-            <span class="pc-certidlabel">Certificate ID:</span>
+            <span class="pc-certidlabel">Certificate/Receipt ID:</span>
           </label>
           <div class="mb-3 d-flex align-items-center">
             <input
@@ -212,35 +213,35 @@
                 alt="Verified Icon"
               />
               <h2>
-                This is a valid certificate awarded to
-                <span class="data text-weight-bold" id="studentName">NaN</span>
+                This is a valid 80G Certificate awarded to
+                <span class="data text-weight-bold" id="donorTop">NaN</span>
               </h2>
               <div class="cert-details mt-3">
                 <h5>Certificate Details:</h5>
                 <table class="table table-bordered">
                   <tbody>
                     <tr>
-                      <td class="tb">Certificate ID</td>
-                      <td><span class="data" id="cert_id">NaN</span></td>
+                      <td class="tb">Receipt No.</td>
+                      <td><span class="data" id="receipt_id">NaN</span></td>
                     </tr>
                     <tr>
-                      <td class="tb">Full Name</td>
+                      <td class="tb">Donor</td>
                       <td>
-                        <span class="data" id="fullName">NaN</span>
+                        <span class="data" id="donor">NaN</span>
                         <span class="fas fa-check-circle text-primary"></span>
                       </td>
                     </tr>
                     <tr>
-                      <td class="tb">Category/Program</td>
-                      <td><span class="data" id="category">NaN</span></td>
+                      <td class="tb">Date of Certificate Issue</td>
+                      <td><span class="data" id="cert_date">NaN</span></td>
                     </tr>
                     <tr>
-                      <td class="tb">Date of Issue</td>
-                      <td><span class="data" id="dateOfIssue">NaN</span></td>
+                      <td class="tb">Transaction Amount</td>
+                      <td><span class="data" id="txn_amt">NaN</span></td>
                     </tr>
                     <tr>
-                      <td class="tb">Program Details</td>
-                      <td><span class="data" id="details">NaN</span></td>
+                      <td class="tb">Transaction Date</td>
+                      <td><span class="data" id="txn_date">NaN</span></td>
                     </tr>
                   </tbody>
                 </table>

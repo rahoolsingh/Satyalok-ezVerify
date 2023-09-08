@@ -157,6 +157,16 @@
           <p>Verify certificates issued by Satyalok for authenticity.</p>
         </header>
 
+        <div class="certificate-form align-items-center mt-2 mb-5" style="margin: auto; width: fit-content; font-size: large;">
+          <span class="fas fa-certificate"></span>
+          <strong class="mb-1">To Verify Your 80G/Donation Certificate: </strong>
+          <span class="">
+            <a href="check_receipt.html" class="text-primary">
+               Click Here
+            </a>
+          </span>
+        </div>
+
         <form
           class="certificate-form"
           onsubmit="event.preventDefault(); certificateForm();"
@@ -172,7 +182,7 @@
               class="form-control me-2"
               required
             />
-            <button type="submit" id="verifyButton" class="btn btn-primary">
+            <button type="submit" id="verifyButton" class="btn btn-success">
               <span class="fas fa-check-circle"></span> Verify
             </button>
           </div>
@@ -186,6 +196,7 @@
             </a>
           </div>
         </div>
+
 
         <!-- Certificate Details Section -->
         <div class="card" id="card" hidden>
