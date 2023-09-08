@@ -88,10 +88,13 @@
                 document.getElementById('openLinkButton').addEventListener('click', function() {
                     window.location.href = content;
                 });
-                window.location.href=content;
+                // window.location.href=content;
             } else {
-                document.getElementById('result').textContent = "Invalid QR Code";
-                document.getElementById('result').style.background = '#ff0000';
+                setTimeout(() => {
+                    document.getElementById('result').textContent = "Invalid QR Code";
+                    document.getElementById('result').style.background = '#ff0000';
+                }, 5000);
+                
             }
         });
 
