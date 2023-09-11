@@ -81,10 +81,8 @@
         fetch(apiUrl)
           .then((response) => response.json())
           .then((data) => {
-            data.donor = data.donor.replace(',', '')
-            console.log(data)
-            if (data.donor === "NaN") {
-              document.getElementById("wait", "record").hidden = false;
+            if (data.error === "Receipt ID not found") {
+              document.getElementById("wait", "record").hidden = true;
               document.getElementById("notfound").hidden = false;
               document.title = "Certificate Not Found";
             } else {
@@ -213,9 +211,8 @@
                 alt="Verified Icon"
               />
               <h2>
-                This is a test 80G Certificate awarded to
-                <span class="data text-weight-bold" id="donorTop">NaN</span>
-                <span class="fas fa-sharp fa-solid fa-xmark text-danger"></span>
+                This is a valid donation certificate awarded to
+                <span class="data text-weight-bold text-success" id="donorTop">NaN</span>
               </h2>
               <div class="cert-details mt-3">
                 <h5>Certificate Details:</h5>
@@ -229,7 +226,7 @@
                       <td class="tb">Donor</td>
                       <td>
                         <span class="data" id="donor">NaN</span>
-                        <span class="fas fa-sharp fa-solid fa-xmark text-danger"></span>
+                        <span class="fas fa-circle-check text-success"></span>
                       </td>
                     </tr>
                     <tr>
